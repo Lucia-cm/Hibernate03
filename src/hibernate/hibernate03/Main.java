@@ -1,4 +1,4 @@
-package hibernate.hibernate02;
+package hibernate.hibernate03;
 
 public class Main {
     public static void main(String[] args) {

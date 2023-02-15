@@ -1,4 +1,4 @@
-package hibernate.hibernate02;
+package hibernate.hibernate03;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

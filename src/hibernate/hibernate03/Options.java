@@ -1,4 +1,4 @@
-package hibernate.hibernate02;
+package hibernate.hibernate03;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -40,9 +40,5 @@ public class Options {
             myFactory.close();
         }
     }
-
-
-
-
 
 }
