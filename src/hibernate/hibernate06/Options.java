@@ -1,4 +1,4 @@
-package hibernate.hibernate04;
+package hibernate.hibernate06;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,7 +23,7 @@ public class Options {
     public void option_delete(){
         create_factory_session();
         try{
-            int id=AdditionalMethods.questions_data_integer("id","eliminar");
+            int id= AdditionalMethods.questions_data_integer("id","eliminar");
 
             mySession.beginTransaction();
             Alumno student=mySession.get(Alumno.class,id);
@@ -46,7 +46,7 @@ public class Options {
     public void option_information_two_tables_references(){
         create_factory_session();
         try{
-            int id=AdditionalMethods.questions_data_integer("id","consultar");
+            int id= AdditionalMethods.questions_data_integer("id","consultar");
             mySession.beginTransaction();
 
             //Obtener Detalle_Alumno
@@ -66,5 +66,27 @@ public class Options {
         }
     }
 
+    //eliminar en cascada
+    public void option_delete_on_cascade(){
+        create_factory_session();
+        try{
+            int id= AdditionalMethods.questions_data_integer("id","eliminar");
+
+            mySession.beginTransaction();
+            Alumno student=mySession.get(Alumno.class,id);
+
+            if(student!=null){
+                mySession.delete(student);
+                System.out.println("Alumno ELIMINADO");
+            }else
+                System.out.println("El alumno NO EXISTE");
+
+            mySession.getTransaction().commit();
+            mySession.close();
+
+        }finally {
+            myFactory.close();
+        }
+    }
 
 }

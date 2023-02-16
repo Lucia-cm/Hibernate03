@@ -1,4 +1,4 @@
-package hibernate.hibernate04;
+package hibernate.hibernate05;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -31,28 +31,6 @@ public class AdditionalMethods {
         if(number>0)
             number=number;
         return number;
-    }
-
-    static Alumno createAlumno(){
-        System.out.println("Indica su NOMBRE:");
-        String name= sc.nextLine();
-        System.out.println("Indica sus APELLIDOS:");
-        String last_name= sc.nextLine();
-
-        return new Alumno(name,last_name);
-    }
-
-    static Detalle_Alumno createDetalleAlumno(){
-        System.out.println("Indica su DIRECCION:");
-        String address= sc.nextLine();
-        System.out.println("Indica su WEB:");
-        String web= sc.nextLine();
-        System.out.println("Indica su TELEFONO:");
-        String tfno= sc.nextLine();
-        System.out.println("Indica los COMENTARIOS:");
-        String comments= sc.nextLine();
-
-        return new Detalle_Alumno(address,web,tfno,comments);
     }
 
     static int questions_data_integer(String data, String action){

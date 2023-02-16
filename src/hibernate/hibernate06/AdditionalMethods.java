@@ -1,4 +1,4 @@
-package hibernate.hibernate04;
+package hibernate.hibernate06;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -61,7 +61,5 @@ public class AdditionalMethods {
 
         return id;
     }
-
-
 
 }
