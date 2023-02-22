@@ -42,24 +42,18 @@ public class AdditionalMethods {
         return new Alumno(name,last_name);
     }
 
-    static Detalle_Alumno createDetalleAlumno(){
-        System.out.println("Indica su DIRECCION:");
-        String address= sc.nextLine();
-        System.out.println("Indica su WEB:");
-        String web= sc.nextLine();
-        System.out.println("Indica su TELEFONO:");
-        String tfno= sc.nextLine();
-        System.out.println("Indica los COMENTARIOS:");
-        String comments= sc.nextLine();
-
-        return new Detalle_Alumno(address,web,tfno,comments);
-    }
-
-    static int questions_data_integer(String data, String action){
-        System.out.println("Introduzca el "+data+" del alumno que desea "+action.toUpperCase());
+    static int questions_data_integer(){
+        System.out.println("Introduzca el ID del ALUMNO:");
         int id=checkPossitiveNumber();
 
         return id;
+    }
+
+    static Asignatura createAsignatura(){
+        System.out.println("Indica la FECHA DE MATRICULACION:");
+        String date=sc.nextLine();
+
+        return new Asignatura(date);
     }
 
 }

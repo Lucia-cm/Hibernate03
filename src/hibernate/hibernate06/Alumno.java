@@ -1,6 +1,8 @@
 package hibernate.hibernate06;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="alumno")
@@ -60,6 +62,19 @@ public class Alumno {
     String nombre;
     @Column(name="apellidos")
     String apellidos;
+
+
+    @OneToMany(mappedBy = "alumno",cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})  //un alumno, muchas asignaturas
+    private List<Asignatura> asignaturas;
+
+    public void addAsignaturas(Asignatura asignatura){
+        if(asignaturas==null)
+            asignaturas=new ArrayList<>();
+
+        asignaturas.add(asignatura);
+        asignatura.setAlumno(this);
+
+    }
 
 
 }

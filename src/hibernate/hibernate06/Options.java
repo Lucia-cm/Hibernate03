@@ -14,77 +14,48 @@ public class Options {
                 .configure("hibernate03.cfg.xml")
                 .addAnnotatedClass(Alumno.class)
                 .addAnnotatedClass(Detalle_Alumno.class)
+                .addAnnotatedClass(Asignatura.class)
                 .buildSessionFactory();
 
         mySession=myFactory.openSession();
     }
 
-    //eliminar
-    public void option_delete(){
+    //Insert
+    public void option_insert_asignatura(){
         create_factory_session();
+        int id=AdditionalMethods.questions_data_integer();
         try{
-            int id= AdditionalMethods.questions_data_integer("id","eliminar");
-
             mySession.beginTransaction();
-            Alumno student=mySession.get(Alumno.class,id);
+            //OBTENER alumno de la tabla Alumno
+            Alumno alumno=mySession.get(Alumno.class,id);
 
-            if(student!=null){
-                mySession.delete(student);
-                System.out.println("Alumno ELIMINADO");
-            }else
-                System.out.println("El alumno NO EXISTE");
+            //CREAR Asignatura para el Alumno
+            /*Asignatura asignatura1=AdditionalMethods.createAsignatura();
+            Asignatura asignatura2=AdditionalMethods.createAsignatura();
+            Asignatura asignatura3=AdditionalMethods.createAsignatura();
+*/
+            Asignatura asignatura1=new Asignatura("2023-01-01");
+            Asignatura asignatura2=new Asignatura("2023-02-01");
+            Asignatura asignatura3=new Asignatura("2023-03-01");
+
+            //ASIGNAR asignaturas asl Alumno
+            alumno.addAsignaturas(asignatura1);
+            alumno.addAsignaturas(asignatura2);
+            alumno.addAsignaturas(asignatura3);
+
+            //GUARDAR en DDBB
+            mySession.save(asignatura1);
+            mySession.save(asignatura2);
+            mySession.save(asignatura3);
 
             mySession.getTransaction().commit();
-            mySession.close();
 
+            System.out.println("Asignatura INSERTADA");
+
+        }catch (Exception e){
+            e.printStackTrace();
         }finally {
-            myFactory.close();
-        }
-    }
-
-    //consultar datos de una tabla desde otra
-    public void option_information_two_tables_references(){
-        create_factory_session();
-        try{
-            int id= AdditionalMethods.questions_data_integer("id","consultar");
-            mySession.beginTransaction();
-
-            //Obtener Detalle_Alumno
-            Detalle_Alumno details=mySession.get(Detalle_Alumno.class,id);
-
-            if(details!=null){
-                System.out.println(details);
-                System.out.println(details.getAlumno());
-            }else
-                System.out.println("El alumno NO EXISTE");
-
-            mySession.getTransaction().commit();
             mySession.close();
-
-        }finally {
-            myFactory.close();
-        }
-    }
-
-    //eliminar en cascada
-    public void option_delete_on_cascade(){
-        create_factory_session();
-        try{
-            int id= AdditionalMethods.questions_data_integer("id","eliminar");
-
-            mySession.beginTransaction();
-            Alumno student=mySession.get(Alumno.class,id);
-
-            if(student!=null){
-                mySession.delete(student);
-                System.out.println("Alumno ELIMINADO");
-            }else
-                System.out.println("El alumno NO EXISTE");
-
-            mySession.getTransaction().commit();
-            mySession.close();
-
-        }finally {
             myFactory.close();
         }
     }
